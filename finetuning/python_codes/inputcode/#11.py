@@ -1,0 +1,1 @@
+"\n\ndef map_view(request):\n    \"\"\"map for patient to find Pharmacy \"\"\"\n    return render(request, 'map.html')"
