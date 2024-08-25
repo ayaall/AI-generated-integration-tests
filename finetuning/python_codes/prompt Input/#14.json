@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef show_medication_list(request):\n    \"\"\"patient show medication list that doctor adds\"\"\"\n    context = None\n    if request.user.is_authenticated and not request.user.is_anonymous:\n        user_info = models.Patient.objects.get(user=request.user)\n        medication = models.Medication.objects.filter(patient_id=user_info.user_id)\n        context = {'medication': medication}\n    return render(request, 'show_medication_list.html', context)"
+	}
+]

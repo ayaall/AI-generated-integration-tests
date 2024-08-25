@@ -1,0 +1,3 @@
+{
+  "code": "def nurse_add_record(request, id_nurse):\n    \"\"\"nurse add record \"\"\"\n    dict = {}\n    dict['patients'] = models.Patient.objects.all()\n    dict['user'] = models.Nurse.objects.get(user_id=request.user.id)\n    if request.method == 'POST':\n        record = models.Record()\n        record.patientName = request.POST['patientName']\n        record.body = request.POST['body']\n        record.nurse_id = id_nurse\n        record.save()\n        return render(request, 'nurse_Record.html')\n    return render(request, 'nurse_Record.html', context=dict)"
+}

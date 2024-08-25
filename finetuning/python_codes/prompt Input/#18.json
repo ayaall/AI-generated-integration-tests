@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef createReportPost(request, pk):\n    try:\n        p = Post.objects.get(id=pk)\n    except ObjectDoesNotExist:\n        return render(request, 'error_page.html', {})\n    if PostReport.objects.filter(post_id=pk, user_id=request.user.id).exists():\n        return render(request, 'error_page.html', {})\n    form = reportPostForm()\n    user_obj = request.user\n    if request.method == 'POST':\n        form = reportPostForm(request.POST)\n        if form.is_valid():\n            instance = form.save(commit=False)\n            instance.user = request.user\n            instance.post = p\n            p.reports_counter = p.reports_counter + 1\n            p.save()\n            instance.save()\n        return redirect('index')\n\n    context = {'form': form, 'user_obj': user_obj, 'post_obj': p}\n    return render(request, 'postReportPage.html', context)"
+	}
+]

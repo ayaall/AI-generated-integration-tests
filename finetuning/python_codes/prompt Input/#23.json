@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef editCategory(request, pk):\n    if not request.user.is_superuser:\n        return render(request, \"admin_error.html\", {})\n\n    c = Category.objects.get(id=pk)\n    if request.method == 'POST':\n        form = Categoryform(request.POST, instance=c)\n\n        if form.is_valid():\n            form.save()\n            return redirect('categories')\n\n    else:\n        form = Categoryform(instance=c)\n\n    context = {\n        'form': form,\n        'obj': c,\n    }\n\n    return render(request, 'editCategory.html', context)"
+	}
+]

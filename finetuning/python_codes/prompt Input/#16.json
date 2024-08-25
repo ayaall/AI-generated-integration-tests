@@ -1,0 +1,6 @@
+[
+	{
+  "code": "def showMyPosts(request, pk):\n    user = HelpoUser.objects.get(user_id = pk)\n\n    if request.user != user.user:\n        return render(request, \"error_page.html\", {})\n\n    posts = Post.objects.all().filter(user = user).order_by('-date')  # '-' means reverse order\n    context = {\n        'posts': posts,\n        'user_obj': request.user\n    }\n    return render(request, 'myPosts.html', context)"
+}
+
+]

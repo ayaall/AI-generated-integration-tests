@@ -1,0 +1,5 @@
+[
+	{
+  "code": "def logout_user(request):\n    \"\"\"logout for users \"\"\"\n    logout(request)\n    return redirect('login')\n\n\ndef book_appointment(request):\n    \"\"\"patient Book Appointment \"\"\"\n    if request.method == 'POST':\n        appointment = models.Appointment()\n        appointment.date = request.POST['appointment']\n        appointment.time = request.POST['time']\n        appointment.name = request.user.username\n        appointment.patient_id = request.user.id\n        flag = True\n        for i in models.Appointment.objects.all():\n            if (str(i.date) == str(appointment.date) and\n                    str(i.time)[0:5] == str(appointment.time)[0:5]):\n                flag = False\n                messages.error(request, \"The role is already booked\")\n        if flag:\n            appointment.save()\n            messages.success(request, \"Book Success\")\n    return render(request, 'BookAppointment.html')"
+}
+]

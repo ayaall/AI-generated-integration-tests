@@ -1,0 +1,6 @@
+[
+	{
+  "code": "def patient_dashboard(request):\n    \"\"\"patient dashboard \"\"\"\n    mydict = {}\n    user = models.Patient.objects.get(user_id=request.user.id)\n    mydict['user'] = user\n    return render(request, 'patient_dashboard.html', context=mydict)"
+}
+
+]

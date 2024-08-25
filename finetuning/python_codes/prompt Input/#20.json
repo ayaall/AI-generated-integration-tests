@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef associationPhotos(request, pk):\n    asso_obj = Association.objects.get(id=pk)\n    photos = Image.objects.filter(asso=pk)\n    if request.user != asso_obj.manager.user and not request.user.is_superuser:\n        return render(request, \"error_page.html\", {})\n\n    if request.method == 'POST':\n        i_form = ImageFrom(request.POST, files=request.FILES)\n        if i_form.is_valid():\n            instance = i_form.save(commit=False)\n            instance.asso = asso_obj\n            instance.save()\n            return redirect('associationPhotos', pk=asso_obj.id)\n    else:\n        i_form = ImageFrom()\n\n    context = {\n        'i_form': i_form,\n        'obj': asso_obj,\n        'photos': photos\n    }\n\n    return render(request, \"assoPhotos.html\", context)"
+	}
+]

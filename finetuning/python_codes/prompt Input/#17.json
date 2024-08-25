@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef editPost(request, pk):\n    post = Post.objects.get(id=pk)\n\n    user_obj = HelpoUser.objects.get(user=post.user)\n    if request.user != user_obj.user:\n        return render(request, \"error_page.html\", {})\n\n    if request.method == 'POST':\n        form = createPostForm(request.POST, instance=post)\n\n        if form.is_valid():\n            updatePostDate(post)\n            form.save()\n            return redirect('showMyPosts', pk=user_obj.user_id)\n\n    else:\n        form = createPostForm(instance=post)\n    context = {\n        'form': form,\n        'obj': user_obj,\n    }\n    return render(request, \"editPost.html\", context)"
+	}
+]

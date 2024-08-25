@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef categories(request):\n    if not request.user.is_superuser:\n        return render(request, \"admin_error.html\", {})\n    form = Categoryform()\n    if request.method == 'POST':\n        form = Categoryform(request.POST)\n\n        if form.is_valid():\n            form.save()\n            form = Categoryform()\n            return redirect('categories')\n\n    context = {\n        'form': form,\n        'objects': Category.objects.all()\n    }\n    return render(request, 'categoryFormPage.html', context)"
+	}
+]

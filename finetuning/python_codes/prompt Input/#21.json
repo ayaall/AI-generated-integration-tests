@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef deletePhoto(request, asso_pk, photo_pk):\n    asso_obj = Association.objects.get(id=asso_pk)\n    if request.user != asso_obj.manager.user and not request.user.is_superuser:\n        return render(request, \"error_page.html\", {})\n\n    try:\n        photo = Image.objects.get(id=photo_pk)\n    except ObjectDoesNotExist:\n        return render(request, \"admin_error.html\", {})\n\n    photo.delete()\n    return redirect('associationPhotos', pk=asso_obj.id)"
+	}
+]

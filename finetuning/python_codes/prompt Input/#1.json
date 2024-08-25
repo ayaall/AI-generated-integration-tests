@@ -1,0 +1,6 @@
+[
+	{
+  "code": "def is_nurse(user):\n    \"\"\"check if user in nurse \"\"\"\n    return user.groups.filter(name='NURSE').exists()\n\n\ndef nurse_dashboard(request):\n    \"\"\"nurse dashboard \"\"\"\n    mydict = {\n    }\n    return render(request, 'nurse_dashboard.html', context=mydict)"
+}
+
+]

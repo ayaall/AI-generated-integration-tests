@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\ndef test_myPosts(request, pk):\n    user = HelpoUser.objects.get(user_id = pk)\n    request.user = user.user\n    posts = Post.objects.all().filter(user = user).order_by(\'-date\')\n    context = {\n        \'posts\': posts,\n        \'user_obj\': request.user\n    }\n    return render(request,\'myPosts.html\', context)"
+	}
+]

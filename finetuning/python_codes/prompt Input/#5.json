@@ -1,0 +1,3 @@
+{
+  "code": "def update_ecg(request, id_):\n    \"\"\"nurse update ECG test \"\"\"\n    if request.method == 'POST':\n        user = models.Patient.objects.get(user_id=id_)\n        user.ECG = request.POST['ECG']\n        user.save()\n    return render(request, 'updateECG.html')"
+}

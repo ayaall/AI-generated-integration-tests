@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef update_urine_surgery(request, id_):\n    \"\"\"nurse update Urine Surgery \"\"\"\n    if request.method == 'POST':\n        user = models.Patient.objects.get(user_id=id_)\n        user.Urine_surgery = request.POST['UrineSurgery']\n        user.save()\n    return render(request, 'updateUrineSurgery.html')"
+	}
+]

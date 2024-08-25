@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef editAssociation(request, pk):\n    asso_obj = Association.objects.get(id=pk)\n    if request.user != asso_obj.manager.user and not request.user.is_superuser:\n        return render(request, \"error_page.html\", {})\n\n    if request.method == 'POST':\n        form = associationUpdateForm(request.POST, instance=asso_obj)\n        if form.is_valid():\n            form.save()\n            return redirect('profile', pk=asso_obj.id)\n    else:\n        form = associationUpdateForm(instance=asso_obj)\n\n    context = {\n        'form': form,\n        'obj': asso_obj,\n    }\n\n    return render(request, \"updateAssoDetails.html\", context)"
+	}
+]

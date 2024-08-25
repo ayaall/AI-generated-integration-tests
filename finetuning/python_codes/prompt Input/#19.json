@@ -1,0 +1,5 @@
+[
+	{
+		"code":"\n\ndef sendFeedback(request):\n    form = FeedbackFrom()\n    user_obj = request.user\n    if not (user_obj.is_helpo_user or user_obj.is_association_manager):\n        return render(request, 'error_page.html', {})\n    if request.method == 'POST':\n        form = FeedbackFrom(request.POST)\n        if form.is_valid():\n            instance = form.save(commit=False)\n            instance.user = user_obj\n            instance.save()\n            return redirect('index')\n\n    context = {'form': form, 'user_obj': user_obj}\n    return render(request, 'sendFeedback.html', context)"
+	}
+]
